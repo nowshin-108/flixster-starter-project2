@@ -5,35 +5,42 @@ import SearchForm from './components/SearchForm/SearchForm'
 import DropDown from './components/DropDown/DropDown'
 
 const App = () => {
+
+
   const [page, setPage] = useState(1)
-  const [movieData, setMovieData] = useState(null);
+  const [movieData, setMovieData] = useState([]);
+  
 
   const fetchData = async () => {
-          const apiKey = import.meta.env.VITE_APP_API_KEY
-      
-          const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`, {
-              method: 'get',
-              headers: new Headers({
-                  'Authorization': 'Bearer ' + apiKey,
-                  'accept': 'application/json'
-              }),
-          });
-          console.log("Response ",response)
-          const data = await response.json()
-          console.log("Data after Json  ",data)
-          setMovieData(data)
-      };
+    const apiKey = import.meta.env.VITE_APP_API_KEY
+
+    const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`, {
+      method: 'get',
+      headers: new Headers({
+        'Authorization': 'Bearer ' + apiKey,
+        'accept': 'application/json'
+      }),
+    });
+    // console.log("Response ", response)
+    const data = await response.json()
+    // console.log("Data after Json  ", data)
+    setMovieData(movieData.concat(data.results))
+  };
 
   useEffect(() => {
-      fetchData();
+    fetchData();
   }, [page]);
 
   // if data is empty, show a loading component
-  if (!movieData) {
+  if (!movieData.length) {
     return <div>Loading....</div>
   }
 
-  console.log("movie data in app.jsx before passing it to forecast", movieData)
+  function LoadMore() {
+    setPage(page + 1)
+  }
+
+  // console.log("movie data in app.jsx before passing it to forecast", movieData)
   return (
     <div className="App">
       <header id='app-header'>
@@ -41,7 +48,8 @@ const App = () => {
         <SearchForm />
         <DropDown />
       </header>
-      <MovieList page={page} data={movieData}/>
+      <MovieList page={page} data={movieData} />
+      <button className="load-more-button" onClick={LoadMore}>Load More</button>
       <footer id='app-footer'>
         <p id='footer-content'>@nowshinanber</p>
       </footer>
