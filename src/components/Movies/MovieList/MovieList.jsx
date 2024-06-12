@@ -10,7 +10,7 @@ function MovieList({ page, data }) {
             <div className="movie-list-container">
                 {data.map((movie, idx) => (
                     <div className="movie-card" key={movie.id}>
-                        <MovieCard poster={movie.poster_path} title={movie.title} rating={movie.vote_average} />
+                        <MovieCard poster={movie.poster_path} title={movie.title} rating={movie.vote_average} overview={movie.overview} releaseDate = {movie.release_date} trailer='' genre={movie.genre_ids} runtime='' backdrop_photo={movie.backdrop_path} />
                     </div>
                 ))}
             </div>
