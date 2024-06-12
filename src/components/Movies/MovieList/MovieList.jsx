@@ -1,4 +1,5 @@
 // import React from 'react';
+// import PropType from 'prop-types';
 import './MovieList.css'
 import MovieCard from '../MovieCard/MovieCard'
 
@@ -9,8 +10,8 @@ function MovieList({ page, data }) {
         <>
             <div className="movie-list-container">
                 {data.map((movie, idx) => (
-                    <div className="movie-card" key={movie.id}>
-                        <MovieCard poster={movie.poster_path} title={movie.title} rating={movie.vote_average} overview={movie.overview} releaseDate = {movie.release_date} trailer='' genre={movie.genre_ids} runtime='' backdrop_photo={movie.backdrop_path} />
+                    <div className="movie-card" key={idx}>
+                        <MovieCard poster={movie.poster_path} title={movie.title} rating={movie.vote_average} movie_id={movie.id} />
                     </div>
                 ))}
             </div>

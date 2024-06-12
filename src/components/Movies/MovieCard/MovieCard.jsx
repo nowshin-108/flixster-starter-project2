@@ -2,7 +2,7 @@
 import './MovieCard.css'
 import Modal from '../../Modal/Modal'
 
-function MovieCard({poster, title, rating, overview, releaseDate, genre, trailer, runtime, backdrop_photo}){
+function MovieCard({poster, title, rating, movie_id}){
     
     return (
         <div className="movie-card">
@@ -11,12 +11,13 @@ function MovieCard({poster, title, rating, overview, releaseDate, genre, trailer
             <p>{rating}</p>
             <Modal
                     title={title}
-                    releaseDate={releaseDate}
-                    overview={overview}
-                    genres={genre}
-                    trailer={trailer}
-                    runtime={runtime}
-                    backdrop_path={backdrop_photo}
+                    movie_id={movie_id}
+                    // releaseDate={releaseDate}
+                    // overview={overview}
+                    // genres={genre}
+                    // trailer={trailer}
+                    // runtime={runtime}
+                    // backdrop_path={backdrop_photo}
 
             />
         </div>

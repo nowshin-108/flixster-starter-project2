@@ -6,10 +6,10 @@ import DropDown from './components/DropDown/DropDown'
 
 const App = () => {
 
-
+  
+  // fetching mow playing movies
   const [page, setPage] = useState(1)
   const [movieData, setMovieData] = useState([]);
-  
 
   const fetchData = async () => {
     const apiKey = import.meta.env.VITE_APP_API_KEY
@@ -21,9 +21,9 @@ const App = () => {
         'accept': 'application/json'
       }),
     });
-    // console.log("Response ", response)
+    console.log("Response ", response)
     const data = await response.json()
-    // console.log("Data after Json  ", data)
+    console.log("Data after Json  ", data)
     setMovieData(movieData.concat(data.results))
   };
 
@@ -38,6 +38,7 @@ const App = () => {
 
   function LoadMore() {
     setPage(page + 1)
+    
   }
 
   // console.log("movie data in app.jsx before passing it to forecast", movieData)

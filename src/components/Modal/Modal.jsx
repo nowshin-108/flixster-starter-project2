@@ -1,12 +1,41 @@
-import  { useState } from "react";
-// import PropType from 'prop-types';
+import  { useState, useEffect } from "react";
+import PropType from 'prop-types';
 import "./Modal.css";
 
-export default function Modal({title, overview, releaseDate, genre, trailer, runtime, backdrop_photo}) {
+function Modal({title, movie_id}) {
+
   const [modal, setModal] = useState(false);
+
+  //fetching movie details
+  const [movieDetails, setMovieDetails] = useState("");
+  const [genreData, setGenreData] = useState([]);
+
+  const fetchDetails = async () => {
+    const apiKey = import.meta.env.VITE_APP_API_KEY
+
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}?language=en-US`, {
+      method: 'get',
+      headers: new Headers({
+        'Authorization': 'Bearer ' + apiKey,
+        'accept': 'application/json'
+      }),
+    });
+    console.log("Detail Response ", response);
+    const details = await response.json();
+    console.log("Details Data after Json  ", details);
+    setMovieDetails(details);
+    const genreNames = details.genres.map((genre) => genre.name);
+    const genreNamesString = genreNames.join(", ");
+    setGenreData(genreNamesString);
+  };
+
+  // if data is empty, show a loading component
 
   const toggleModal = () => {
     setModal(!modal);
+    fetchDetails();
+    console.log("movie details", movieDetails)
+    console.log("genre details", genreData)
   };
 
   if(modal) {
@@ -25,16 +54,16 @@ export default function Modal({title, overview, releaseDate, genre, trailer, run
         <div className="overlay" onClick={toggleModal}>
           <div  className="modal" ></div>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <img src={`https://image.tmdb.org/t/p/w500${backdrop_photo}`} alt="Image could not be loaded." />
+            <img src={`https://image.tmdb.org/t/p/w500${movieDetails.backdrop_path}`} alt="Image could not be loaded." />
             <h2>{title}</h2>
-            <h3>Released on: {releaseDate}</h3>
-            <h3>Genre: {genre}</h3>
+            <h3>Released on: {movieDetails.release_date}</h3>
+            <h3>Genre: {genreData}</h3>
             {/* <h3>Runtime: {runtime}</h3> */}
             <p>
-              Overview: {overview}
+              Overview: {movieDetails.overview}
             </p>
 
-            <video src={trailer}></video>
+            {/* <video src={}></video> */}
             <button className="close-modal" onClick={toggleModal}>
               CLOSE
             </button>
@@ -45,12 +74,14 @@ export default function Modal({title, overview, releaseDate, genre, trailer, run
   );
 }
 
-Modal.propTypes = {
-    title: PropType.string.isRequired,
-    releaseDate: PropType.string.isRequired,
-    overview: PropType.string.isRequired,
-    genres: PropType.array.isRequired,
-    trailer: PropType.string.isRequired,
-    runtime: PropType.string.isRequired,
-    backdrop_path: PropType.string.isRequired
-}
+export default Modal
+
+// Modal.propTypes = {
+//     title: PropType.string.isRequired,
+//     releaseDate: PropType.string.isRequired,
+//     overview: PropType.string.isRequired,
+//     genres: PropType.array.isRequired,
+//     trailer: PropType.string.isRequired,
+//     runtime: PropType.string.isRequired,
+//     backdrop_path: PropType.string.isRequired
+// }
