@@ -45,12 +45,12 @@ export default function Modal({title, overview, releaseDate, genre, trailer, run
   );
 }
 
-// Modal.propTypes = {
-//     title: PropType.string.isRequired,
-//     releaseDate: PropType.string.isRequired,
-//     overview: PropType.string.isRequired,
-//     genres: PropType.array.isRequired,
-//     trailer: PropType.string.isRequired,
-//     runtime: PropType.string.isRequired,
-//     backdrop_path: PropType.string.isRequired
-// }
+Modal.propTypes = {
+    title: PropType.string.isRequired,
+    releaseDate: PropType.string.isRequired,
+    overview: PropType.string.isRequired,
+    genres: PropType.array.isRequired,
+    trailer: PropType.string.isRequired,
+    runtime: PropType.string.isRequired,
+    backdrop_path: PropType.string.isRequired
+}
