@@ -1,11 +1,9 @@
-// import React from 'react';
-// import PropType from 'prop-types';
+import PropType from 'prop-types';
 import './MovieList.css'
 import MovieCard from '../MovieCard/MovieCard'
 
-function MovieList({ page, data }) {
+function MovieList({ data }) {
     console.log("movielist", data)
-    // const movie_data = data;
     return (
         <>
             <div className="movie-list-container">
@@ -19,5 +17,8 @@ function MovieList({ page, data }) {
     );
 }
 
+export default MovieList
 
-export default MovieList;
+MovieList.propTypes = {
+    data: PropType.array.isRequired,
+}

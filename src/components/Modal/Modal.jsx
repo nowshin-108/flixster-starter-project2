@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import  { useState } from "react";
 import PropType from 'prop-types';
 import "./Modal.css";
 
@@ -44,6 +44,11 @@ function Modal({title, movie_id}) {
     document.body.classList.remove('active-modal')
   }
 
+  let imgSrc=`https://image.tmdb.org/t/p/w500${movieDetails.backdrop_path}`
+  if (movieDetails.backdrop_path==null){
+      imgSrc="src/assets/img-placeholder.jpeg"
+  }
+
   return (
     <>
       <button onClick={toggleModal} className="btn-modal">
@@ -52,9 +57,8 @@ function Modal({title, movie_id}) {
 
       {modal && (
         <div className="overlay" onClick={toggleModal}>
-          <div  className="modal" ></div>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <img src={`https://image.tmdb.org/t/p/w500${movieDetails.backdrop_path}`} alt="Image could not be loaded." />
+            <img src={imgSrc} alt="Image could not be loaded." />
             <h2>{title}</h2>
             <h3>Released on: {movieDetails.release_date}</h3>
             <h3>Genre: {genreData}</h3>
@@ -76,12 +80,7 @@ function Modal({title, movie_id}) {
 
 export default Modal
 
-// Modal.propTypes = {
-//     title: PropType.string.isRequired,
-//     releaseDate: PropType.string.isRequired,
-//     overview: PropType.string.isRequired,
-//     genres: PropType.array.isRequired,
-//     trailer: PropType.string.isRequired,
-//     runtime: PropType.string.isRequired,
-//     backdrop_path: PropType.string.isRequired
-// }
+Modal.propTypes = {
+    title: PropType.string.isRequired,
+    movie_id: PropType.number.isRequired,
+}
