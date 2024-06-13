@@ -6,6 +6,7 @@
 // const App = () => {
 
 //   const [page, setPage] = useState(1)
+//   const [displayLoadMore, setDisplayLoadMore] = useState(true)
 //   const [movieData, setMovieData] = useState([]);
 //   const [searchQuery, setSearchQuery] = useState("");
 //   const [searchTabState, setSearchTabState] = useState("inactive");
@@ -31,20 +32,19 @@
 //         console.log("Default movie data  ", movieData);
 //       }
 //       else if (action === "search") {
-//         setMovieData([]);
+//         let tempMovieData =[]
 //         console.log("MovieData set to empty", movieData)
 //         const response = await fetch(url, options);
 //         const Data = await response.json();
-//         setMovieData(movieData.concat(Data.results));
+//         setMovieData(tempMovieData.concat(Data.results));
 //       }
 //       else if (action == "reload default") {
 //         console.log("default reloaded here")
-//         setMovieData([]);
-//         setPage(1);
+//         let tempMovieData = []
 
 //         const response = await fetch(url, options);
 //         const Data = await response.json();
-//         setMovieData(movieData.concat(Data.results));
+//         setMovieData(tempMovieData.concat(Data.results));
 //       }
 //     }
 //     catch (err){
@@ -57,19 +57,10 @@
 //       const searchURL = `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=en-US&page=1`;
 //       fetchData(searchURL, "search");
 //     }
-//     // else {
-//     //   fetchData(default_url, "reload default");
-//     // }
 //   }
-
-//   function handleSearchChange(event) {
-//     setSearchQuery(encodeURIComponent(event.target.value));
-//   }
-
 //   // load more functionality
 //   function LoadMore() {
 //     setPage(page + 1)
-
 //   }
 
 //   function toggleTabs(event) {
@@ -77,22 +68,31 @@
 //       setNowPlayingTabState("active");
 //       setSearchTabState("inactive");
 //       setDisplaySearch("hide");
-
-//       fetchData(default_url, "reload default");
+//       setDisplayLoadMore(true);
+//       setPage(1);
+//       setMovieData([])
+//       fetchData(default_url, "load");
 //     }
 //     else {
 //       setNowPlayingTabState("inactive");
 //       setSearchTabState("active");
 //       setDisplaySearch("show");
 
-//       search();
+//       // search();
 //     }
 //   }
 
-//   function clearContainer(event){
-//     setMovieData([]);
-//     console.log("clear container clicked and movie data", movieData )
+//   function handleSubmit(event) {
+//     event.preventDefault();
+//     setDisplayLoadMore(false)
+//     search();
 //   }
+
+//   function handleChange(event) {
+//     setSearchQuery(encodeURIComponent(event.target.value));
+//   }
+
+
 
 //   useEffect(() => {
 //     fetchData(default_url, "load");
@@ -111,12 +111,18 @@
 //       <button id='now-playing-tab' className={nowPlayingTabState} onClick={toggleTabs}>Now Playing</button>
 //       <button id='search-tab' className={searchTabState} onClick={toggleTabs}>Search</button>
 //       <DropDown />
-//       <div id='search-section' className={displaySearch}>
-//         <input className='search-bar' onChange={handleSearchChange} placeholder='Discover your next movie...'></input>
-//         <button onClick={() => { search(); clearContainer();}}>Search</button>
+//       <div id='search-section' className={displaySearch} >
+//         <form onSubmit={handleSubmit}>
+//         <input className='search-bar' onChange={handleChange} placeholder='Search movie...'></input>
+//         <button>Search</button>
+//         </form>
 //       </div>
 //       <MovieList data={movieData} />
+//       {displayLoadMore ?
 //       <button className="load-more-button" onClick={LoadMore}>Load More</button>
+//         :
+//         <h3>End of search results</h3>
+//       }
 //       <footer id='app-footer'>
 //         <p id='footer-content'>@nowshinanber</p>
 //       </footer>
@@ -126,14 +132,6 @@
 // }
 
 // export default App
-
-
-
-
-
-
-
-
 
 
 import { useState, useEffect } from 'react'
@@ -207,9 +205,9 @@ const App = () => {
       setSearchTabState("inactive");
       setDisplaySearch("hide");
       setDisplayLoadMore(true);
-      setPage(1);
+      let tempPage = 1;
       setMovieData([])
-      fetchData(default_url, "load");
+      fetchData(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${tempPage}`, "reload default");
     }
     else {
       setNowPlayingTabState("inactive");
