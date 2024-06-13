@@ -12,9 +12,31 @@
   padding: 20px;
 }
 
-/* #search-bar {
+.search-bar {
+  width: 50%;
+}
+
+.search-section {
+  display: none;
+  margin-bottom: 3%;
+}
+
+.active {
+  background-color: #282c34;
+}
+
+.inactive {
+  background-color: grey;
+}
+
+.show {
   display: block;
-} */
+}
+
+.hide {
+  display: none;
+}
+
 
 .load-more-button {
   margin-bottom: 100px;
@@ -23,7 +45,6 @@
 /* footer */
 
 #app-footer {
-  position: fixed;
   background-color: #282c34;
   color: white;
   bottom: 0;
