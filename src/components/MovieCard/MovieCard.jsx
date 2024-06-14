@@ -1,4 +1,3 @@
-// import { useState } from 'react'
 import './MovieCard.css'
 import PropType from 'prop-types';
 import Modal from '../Modal/Modal'

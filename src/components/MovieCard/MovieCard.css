@@ -1,11 +1,12 @@
 .movie-card {
     flex-basis: 23.5%;
-    background-color: #000;
+    background-color: #100E09;
+    justify-content: center;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,.1);
     color: #fff;
 }
 
 .movie-card img {
-    width: 50%;
+    width: 100%;
 }
