@@ -63,6 +63,7 @@ function Modal({title, movie_id}) {
             <h3>Released on: {movieDetails.release_date}</h3>
             <h3>Genre: {genreData}</h3>
             <h3>Runtime: {movieDetails.runtime} min</h3>
+            <h3>Runtime: {movieDetails.runtime} min</h3>
             <p>
               Overview: {movieDetails.overview}
             </p>
@@ -73,8 +74,17 @@ function Modal({title, movie_id}) {
           </div>
         </div>
       )}
+
+
+
     </>
+
+
+
   );
+
+
+  
 }
 
 

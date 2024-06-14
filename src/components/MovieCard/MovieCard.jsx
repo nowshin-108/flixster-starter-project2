@@ -3,10 +3,17 @@ import PropType from 'prop-types';
 import Modal from '../Modal/Modal'
 
 function MovieCard({poster, title, rating, movie_id}){
+
+
+
     let imgSrc=`https://image.tmdb.org/t/p/w500${poster}`
+
     if (poster==null){
         imgSrc="src/assets/img-placeholder.jpeg"
     }
+
+
+
     return (
         <div className="movie-card">
             <img src= {imgSrc} alt="Image not loading"/>
@@ -20,7 +27,11 @@ function MovieCard({poster, title, rating, movie_id}){
     )
 }
 
+
+
 export default MovieCard
+
+
 
 MovieCard.propTypes = {
     poster: PropType.string,

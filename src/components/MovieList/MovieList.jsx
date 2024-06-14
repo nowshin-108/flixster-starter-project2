@@ -3,7 +3,9 @@ import './MovieList.css'
 import MovieCard from '../MovieCard/MovieCard'
 
 function MovieList({ data }) {
-    console.log("movielist", data)
+
+
+
     return (
         <>
             <div className="movie-list-container">
@@ -17,7 +19,11 @@ function MovieList({ data }) {
     );
 }
 
+
+
 export default MovieList
+
+
 
 MovieList.propTypes = {
     data: PropType.array.isRequired,
