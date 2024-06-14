@@ -23,8 +23,7 @@ const App = () => {
                     }
                   };
 
-<<<<<<< HEAD
-=======
+
 
   //fetchData function - used mostly all places to fetch API data
   const fetchData = async (url, action) => {
@@ -146,97 +145,66 @@ const App = () => {
   }
 
 
-
-
-
   return (
-    <div className="App">
+      <div className="App">
 
-      
-      <header className='app-header'>
-        <div className='title-box'>
-          <div className='title-img-div'>  
-          <img src="src/assets/logo.jpeg" alt="" /> 
+              
+        <header className='app-header'>
+          <div className='title-box'>
+            <div className='title-img-div'>  
+            <img src="src/assets/logo.jpeg" alt="" /> 
+            </div>
+            <div className='title-name-div'>
+            <h1 className='title'>Flixster</h1>
+            </div>
           </div>
-          <div className='title-name-div'>
-          <h1 className='title'>Flixster</h1>
+
+
+          <div id='search-section'>
+          <form onSubmit={handleSubmit}>
+          <input className='search-bar' onChange={handleChange} placeholder='Search movie...'></input>
+          <button className='search-button'>Search</button>
+          </form>
           </div>
+
+        </header>
+
+
+        <div className="nav-bar">
+
+            <button id='now-playing-tab' className={nowPlayingTabState} onClick={toggleTabs}>Now Playing</button>
+
+
+            <div className="dropdown-box">
+
+                <select name = "revenue" className = "dropdown" placeholder="Sort by" onChange={sortMovieCards}>
+                  <option value = "Popular">Popular</option>
+                  <option value = "Revenue">Revenue</option>
+                  <option value = "Title (A-Z)">Title (A-Z)</option>
+                  <option value = "Highly Rated">Highly Rated</option>
+                </select>
+
+            </div>
+
         </div>
-      
-
-        <div id='search-section'>
-        <form onSubmit={handleSubmit}>
-        <input className='search-bar' onChange={handleChange} placeholder='Search movie...'></input>
-        <button className='search-button'>Search</button>
-        </form>
-        </div>
 
 
-      </header>
+        <MovieList data={movieData} />
 
 
-      <div className="nav-bar">
+        {displayLoadMore ?
+        <button className="load-more-button" onClick={LoadMore}>Load More</button>
+          :
+          <h3 className='end-search-msg'>End of search results</h3>
+        }
 
-      <button id='now-playing-tab' className={nowPlayingTabState} onClick={toggleTabs}>Now Playing</button>
 
-
-      <div className="dropdown-box">
-
-          <select name = "revenue" className = "dropdown" placeholder="Sort by" onChange={sortMovieCards}>
-            <option value = "Popular">Popular</option>
-            <option value = "Revenue">Revenue</option>
-            <option value = "Title (A-Z)">Title (A-Z)</option>
-            <option value = "Highly Rated">Highly Rated</option>
-          </select>
+        <footer id='app-footer'>
+          <p id='footer-content'>@nowshinanber</p>
+        </footer>
 
       </div>
-
-<<<<<<< HEAD
-        </div>
-=======
-
-      </header>
-
-
-      <div className="nav-bar">
-
-      <button id='now-playing-tab' className={nowPlayingTabState} onClick={toggleTabs}>Now Playing</button>
-
-
-      <div className="dropdown-box">
-
-          <select name = "revenue" className = "dropdown" placeholder="Sort by" onChange={sortMovieCards}>
-            <option value = "Popular">Popular</option>
-            <option value = "Revenue">Revenue</option>
-            <option value = "Title (A-Z)">Title (A-Z)</option>
-            <option value = "Highly Rated">Highly Rated</option>
-          </select>
-
-      </div>
-
-        </div>
-
-
-      <MovieList data={movieData} />
-
-
->>>>>>> e68bf085efaa2ff70d0630da91e8bb3414e0f21c
-      {displayLoadMore ?
-      <button className="load-more-button" onClick={LoadMore}>Load More</button>
-        :
-        <h3 className='end-search-msg'>End of search results</h3>
-      }
-
-
->>>>>>> e68bf085efaa2ff70d0630da91e8bb3414e0f21c
-      <footer id='app-footer'>
-        <p id='footer-content'>@nowshinanber</p>
-      </footer>
-
-
->>>>>>> e68bf085efaa2ff70d0630da91e8bb3414e0f21c
-    </div>
-  )
+  );
 
 }
 
