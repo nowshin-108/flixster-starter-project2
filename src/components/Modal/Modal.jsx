@@ -5,8 +5,6 @@ import "./Modal.css";
 function Modal({title, movie_id}) {
 
   const [modal, setModal] = useState(false);
-
-  //fetching movie details
   const [movieDetails, setMovieDetails] = useState("");
   const [genreData, setGenreData] = useState([]);
 
@@ -20,16 +18,15 @@ function Modal({title, movie_id}) {
         'accept': 'application/json'
       }),
     });
-    console.log("Detail Response ", response);
     const details = await response.json();
-    console.log("Details Data after Json  ", details);
     setMovieDetails(details);
     const genreNames = details.genres.map((genre) => genre.name);
     const genreNamesString = genreNames.join(", ");
     setGenreData(genreNamesString);
   };
 
-  // if data is empty, show a loading component
+
+
 
   const toggleModal = () => {
     setModal(!modal);
@@ -38,22 +35,33 @@ function Modal({title, movie_id}) {
     console.log("genre details", genreData)
   };
 
+
+
   if(modal) {
     document.body.classList.add('active-modal')
   } else {
     document.body.classList.remove('active-modal')
   }
 
+
+
   let imgSrc=`https://image.tmdb.org/t/p/w500${movieDetails.backdrop_path}`
   if (movieDetails.backdrop_path==null){
       imgSrc="src/assets/img-placeholder.jpeg"
   }
 
+
+
   return (
     <>
+
+
+
       <button onClick={toggleModal} className="btn-modal">
         Learn More
       </button>
+
+
 
       {modal && (
         <div className="overlay" onClick={toggleModal}>
@@ -62,11 +70,10 @@ function Modal({title, movie_id}) {
             <h2>{title}</h2>
             <h3>Released on: {movieDetails.release_date}</h3>
             <h3>Genre: {genreData}</h3>
-            {/* <h3>Runtime: {runtime}</h3> */}
+            <h3>Runtime: {movieDetails.runtime} min</h3>
             <p>
               Overview: {movieDetails.overview}
             </p>
-
             {/* <video src={}></video> */}
             <button className="close-modal" onClick={toggleModal}>
               CLOSE
@@ -74,8 +81,17 @@ function Modal({title, movie_id}) {
           </div>
         </div>
       )}
+
+
+
     </>
+
+
+
   );
+
+
+  
 }
 
 export default Modal
