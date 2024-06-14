@@ -1,51 +1,190 @@
 .App {
   text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(
+    90deg,
+    #020202 0%,
+    #090909 10%,
+    #0d0d0d 20%,
+    #111111 30%,
+    #181818 40%,
+    #181818 50%,
+    #111111 60%,
+    #0d0d0d 70%,
+    #090909 80%,
+    #020202 100%
+);
 }
 
-#app-header {
-  background-color: #282c34;
+/* Header Section */
+.app-header {
+  background:#020202;
+  color: #fff;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-evenly;
-  color: white;
-  padding: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
 }
 
-.search-bar {
-  width: 50%;
-}
+/* title-info */
 
-.search-section {
-  display: none;
-  margin-bottom: 3%;
-}
-
-.active {
-  background-color: #282c34;
-}
-
-.inactive {
-  background-color: grey;
-}
-
-.show {
-  display: block;
-}
-
-.hide {
-  display: none;
+.title-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  gap: 10px;
+  align-items: center;
 }
 
 
+.title-img-div img{
+max-height: 80px;
+max-width: 80px;
+
+}
+
+.title-name-div {
+  color: #B59410;
+}
+
+/* Search Section */
+#search-section {
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.search-bar{
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px;
+  width: 900px;
+  background-color: #fff;
+  color: #444;
+}
+
+.search-bar::placeholder, .dropdown::placeholder {
+  color: #888;
+}
+
+.search-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px;
+  background-color: #B59410;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-button:hover {
+  background-color: gray;
+}
+
+.end-search-msg {
+  color: #888;
+}
+
+/* nav section - contains now-playing & sort */
+.nav-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 25px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* sort dropdown */
+.dropdown {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px;
+  /* width: 200px; */
+  color: #444;
+}
+
+#sort-label {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px;
+  background-color: #B59410;
+  color: #000;
+}
+
+#now-playing-tab {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  margin: 3px;
+  background-color: #B59410;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#now-playing-tab:hover {
+  background-color: gray;
+}
+
+/* learn more button - opens modal */
+.open-modal-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px;
+  background-color: #191C20;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.open-modal-button:hover {
+  background-color: #B59410;
+}
+
+/* load more button - fetches movies for next page */
 .load-more-button {
-  margin-bottom: 100px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px;
+  background-color: #B59410;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.load-more-button:hover {
+  background-color: gray;
 }
 
 /* footer */
-
 #app-footer {
-  background-color: #282c34;
+  background-color: #020202;
   color: white;
   bottom: 0;
   left: 0;
@@ -57,14 +196,19 @@
   justify-content: center;
 }
 
-@media (max-width: 1000px) {
+/* responsive */
+@media (max-width: 768px) {
 
-  .search-bar {
-    flex-direction: column;
-    gap: 10px;
+  .movie-card {
+    width: 100%;
   }
 
-  .search-bar form {
+  .search-bar, .dropdown, button {
+    width: 100%;
+    margin: 5px 0;
+  }
+  
+  #search-section {
     flex-direction: column;
   }
 }
