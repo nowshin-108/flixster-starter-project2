@@ -12,7 +12,6 @@ const App = () => {
   const [nowPlayingTabState, setNowPlayingTabState] = useState("active");
   const [sortMovies, setSortMovies] = useState("Popular");
 
-
   const apiKey = import.meta.env.VITE_APP_API_KEY
   const default_url = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`;
   const options = {

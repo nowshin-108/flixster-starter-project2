@@ -7,30 +7,45 @@ function Modal({title, movie_id}) {
   const [modal, setModal] = useState(false);
   const [movieDetails, setMovieDetails] = useState("");
   const [genreData, setGenreData] = useState([]);
+  const [trailerKey, setTrailerKey] = useState("")
+
+  const apiKey = import.meta.env.VITE_APP_API_KEY
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + apiKey
+    }
+  };
 
   const fetchDetails = async () => {
-    const apiKey = import.meta.env.VITE_APP_API_KEY
-
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}?language=en-US`, {
-      method: 'get',
-      headers: new Headers({
-        'Authorization': 'Bearer ' + apiKey,
-        'accept': 'application/json'
-      }),
-    });
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}?language=en-US`, options);
     const details = await response.json();
+    console.log("API response from details URL after JSON", details)
     setMovieDetails(details);
     const genreNames = details.genres.map((genre) => genre.name);
     const genreNamesString = genreNames.join(", ");
     setGenreData(genreNamesString);
   };
 
+  const fetchTrailer = async (movie_id) => {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}/videos?language=en-US`, options);
+    console.log("API response from trailer URL", response)
+    const data = await response.json();
+    console.log("API response from trailer URL after json", data)
+    let video = data.results.find((video) => video.site === "YouTube" && video.type === "Trailer");
+    let videoURL = `https://www.youtube.com/embed/${video.key}`;
+    setTrailerKey(videoURL)
+  }
+
+
 
   const toggleModal = () => {
     setModal(!modal);
     fetchDetails();
-    console.log("movie details", movieDetails)
-    console.log("genre details", genreData)
+    console.log("Movie deatils from API", movieDetails)
+    console.log("Genre Data from API", genreData)
+    fetchTrailer(movie_id)
   };
 
 
@@ -67,7 +82,17 @@ function Modal({title, movie_id}) {
             <p>
               Overview: {movieDetails.overview}
             </p>
-            {/* <video src={}></video> */}
+            <div className="video-responsive">
+              <iframe
+                className="trailer-size"
+                // width="853"
+                // height="480"
+                src={trailerKey}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Embedded youtube"
+              />
+            </div>
             <button className="close-modal" onClick={toggleModal}>
               CLOSE
             </button>
