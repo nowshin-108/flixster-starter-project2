@@ -11,3 +11,14 @@
 .load-more-button {
     margin-bottom: 100px;
 }
+
+@media (max-width: 768px) {
+
+    .movie-list-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 50px;
+        margin-bottom: 50px;
+    }
+}

@@ -6,11 +6,11 @@ const App = () => {
 
   //setting state
   const [page, setPage] = useState(1)
-  const [displayLoadMore, setDisplayLoadMore] = useState(true)
   const [movieData, setMovieData] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
   const [nowPlayingTabState, setNowPlayingTabState] = useState("active");
+  const [searchQuery, setSearchQuery] = useState("");
   const [sortMovies, setSortMovies] = useState("Popular");
+  const [displayLoadMore, setDisplayLoadMore] = useState(true)
 
   const apiKey = import.meta.env.VITE_APP_API_KEY
   const default_url = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`;
@@ -126,7 +126,6 @@ const App = () => {
       }
     }
 
-    filterURL += "&api_key=" + String(apiKey);
     fetchData(filterURL, "search")
   }, [sortMovies])
 
@@ -167,7 +166,6 @@ const App = () => {
           </div>
 
         </header>
-
 
         <div className="nav-bar">
 

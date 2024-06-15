@@ -5,7 +5,6 @@ import MovieCard from '../MovieCard/MovieCard'
 function MovieList({ data }) {
 
 
-
     return (
         <>
             <div className="movie-list-container">
@@ -20,9 +19,7 @@ function MovieList({ data }) {
 }
 
 
-
 export default MovieList
-
 
 
 MovieList.propTypes = {

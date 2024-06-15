@@ -18,7 +18,6 @@
 );
 }
 
-/* Header Section */
 .app-header {
   background:#020202;
   color: #fff;
@@ -33,7 +32,6 @@
   font-weight: bold;
 }
 
-/* title-info */
 
 .title-box {
   display: flex;
@@ -54,7 +52,10 @@ max-width: 80px;
   color: #B59410;
 }
 
-/* Search Section */
+.sidebar{
+margin-top: 15px;
+}
+
 #search-section {
   justify-content: center;
   align-items: center;
@@ -67,7 +68,7 @@ max-width: 80px;
   border: none;
   border-radius: 4px;
   margin: 5px;
-  width: 900px;
+  width: 600px;
   background-color: #fff;
   color: #444;
 }
@@ -96,7 +97,6 @@ max-width: 80px;
   color: #888;
 }
 
-/* nav section - contains now-playing & sort */
 .nav-bar {
   display: flex;
   flex-wrap: wrap;
@@ -110,14 +110,12 @@ max-width: 80px;
   font-weight: bold;
 }
 
-/* sort dropdown */
 .dropdown {
   padding: 10px;
   font-size: 16px;
   border: none;
   border-radius: 4px;
   margin: 5px;
-  /* width: 200px; */
   color: #444;
 }
 
@@ -147,24 +145,6 @@ max-width: 80px;
   background-color: gray;
 }
 
-/* learn more button - opens modal */
-.open-modal-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  margin: 5px;
-  background-color: #191C20;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.open-modal-button:hover {
-  background-color: #B59410;
-}
-
-/* load more button - fetches movies for next page */
 .load-more-button {
   margin-top: 20px;
   padding: 10px 20px;
@@ -182,7 +162,6 @@ max-width: 80px;
   background-color: gray;
 }
 
-/* footer */
 #app-footer {
   background-color: #020202;
   color: white;
@@ -196,14 +175,20 @@ max-width: 80px;
   justify-content: center;
 }
 
-/* responsive */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
 
-  .movie-card {
-    width: 100%;
+  #search-section {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: #fff;
   }
 
-  .search-bar, .dropdown, button {
+  .search-bar{
+    width: 40%;
+    margin: 5px 0;
+  }
+  .dropdown{
     width: 100%;
     margin: 5px 0;
   }

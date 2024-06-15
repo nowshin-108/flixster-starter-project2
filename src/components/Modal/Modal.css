@@ -1,13 +1,17 @@
-.modal {
-    position: block;
-    top: 50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    width:90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-        
+.open-modal-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    margin: 5px;
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.open-modal-button:hover {
+    background-color: #B59410;
 }
 
 .overlay {
@@ -17,14 +21,15 @@
     right:0;
     bottom:0;
     background: rgba(0,0,0,.5);
+    color: azure;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 4;
 }
 
 
 .modal-content {
-    
     line-height: 1.4;
     background: #161311;
     padding: 14px 28px;
@@ -72,5 +77,12 @@
 
 .trailer-size {
     width: 100%;
-    height: 100%;
+}
+
+@media (max-width: 768px) {
+
+    .trailer-size {
+        width: 100%;
+        height: 100%;
+    }
 }
