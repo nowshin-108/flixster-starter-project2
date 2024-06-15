@@ -116,8 +116,10 @@ margin-top: 15px;
   border: none;
   border-radius: 4px;
   margin: 5px;
-  color: #444;
+  color: #000;
+  background-color: #B59410;
 }
+
 
 #sort-label {
   padding: 10px 20px;

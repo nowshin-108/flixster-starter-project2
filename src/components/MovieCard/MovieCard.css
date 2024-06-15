@@ -12,6 +12,10 @@
     height: 50%;
 }
 
+.movie-card:hover {
+    background-color: #343434;
+}
+
 .not-liked-button{
     position: absolute;
     z-index: 2;

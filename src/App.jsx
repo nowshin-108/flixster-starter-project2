@@ -145,24 +145,27 @@ const App = () => {
 
   return (
       <div className="App">
-
               
         <header className='app-header'>
+
           <div className='title-box'>
+
             <div className='title-img-div'>  
-            <img src="src/assets/logo.jpeg" alt="" /> 
+              <img src="src/assets/logo.jpeg" alt="" /> 
             </div>
+
             <div className='title-name-div'>
-            <h1 className='title'>Flixster</h1>
+              <h1 className='title'>Flixster</h1>
             </div>
+
           </div>
 
 
           <div id='search-section'>
-          <form onSubmit={handleSubmit}>
-          <input className='search-bar' onChange={handleChange} placeholder='Search movie...'></input>
-          <button className='search-button'>Search</button>
-          </form>
+            <form onSubmit={handleSubmit}>
+              <input className='search-bar' onChange={handleChange} placeholder='Search movie...'></input>
+              <button className='search-button'>Search</button>
+            </form>
           </div>
 
         </header>
@@ -170,7 +173,6 @@ const App = () => {
         <div className="nav-bar">
 
             <button id='now-playing-tab' className={nowPlayingTabState} onClick={toggleTabs}>Now Playing</button>
-
 
             <div className="dropdown-box">
 
